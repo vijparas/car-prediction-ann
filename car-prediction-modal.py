@@ -51,6 +51,8 @@ classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['
 classifier.fit(X_train, y_train, batch_size=10, epochs=100)
 
 y_pred = classifier.predict(X_test)
-cm = confusion_matrix(y_test,
-                      y_pred,
-                      False)
+np.argmax(y_pred,axis=1)
+
+probability=classifier.predict_proba(X_test)
+classes=classifier.predict_classes(X_test)
+cm = confusion_matrix(np.argmax(y_test,axis=1),classes)
